@@ -8,20 +8,19 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'mvn clean install'
+                bat 'mvn clean install'
             }
         }
         stage('Docker Build') {
             steps {
-                sh 'docker build -t student-ci-cd:latest .'
+                bat 'docker build -t student-ci-cd:latest .'
             }
         }
         stage('Push to DockerHub') {
-    steps {
-        sh 'docker tag student-ci-cd:latest abinaya5303/student-ci-cd:latest'
-        sh 'docker push abinaya5303/student-ci-cd:latest'
-    }
-}
-
+            steps {
+                bat 'docker tag student-ci-cd:latest abinaya5303/student-ci-cd:latest'
+                bat 'docker push abinaya5303/student-ci-cd:latest'
+            }
+        }
     }
 }
